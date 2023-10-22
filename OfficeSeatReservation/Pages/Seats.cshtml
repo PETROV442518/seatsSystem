@@ -1,0 +1,21 @@
+﻿@page
+@model SeatsModel
+@{
+    ViewData["Title"] = "Seat Layout";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!-- Display the seat layout here -->
+<div class="seat-layout">
+    @foreach (var seat in Model.Seats)
+    {
+        <div class="seat @(seat.IsAvailable ? "available" : "reserved")">
+            @if (seat.IsAvailable)
+            {
+                <a asp-page="./Reserve" asp-route-seatId="@seat.Id">Reserve</a>
+            }
+            <p>Seat @seat.SeatNumber</p>
+        </div>
+    }
+</div>
