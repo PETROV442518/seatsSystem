@@ -14,22 +14,29 @@ namespace OfficeSeatReservation.Services
 
         internal List<Seat> GetAllAvailableSeats()
         {
-            _context.seats
+           return _context.Seats.Where(s => s.IsAvailable).ToList();
         }
 
         internal List<Seat> GetAllSeats()
         {
-            throw new NotImplementedException();
+            return _context.Seats.ToList();
         }
 
         internal Seat GetSeatById(int seatId)
         {
-            throw new NotImplementedException();
+           return _context.Seats.Where(s => s.Id == seatId).FirstOrDefault();
         }
 
         internal bool IsSeatAvailableForPeriod(int id, DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+           var result = false;
+           var seat = _context.Reservations.Where(s => s.SeatId == id).FirstOrDefault();
+            if (seat != null) {
+                if(seat.StartDate <= startDate || seat.EndDate >= endDate) { 
+                    result = true;
+                }
+            }
+            return result;
         }
 
         internal void ReserveSeatForPeriod(int seatId, string employeeName, DateTime startDate, DateTime endDate)
@@ -43,13 +50,10 @@ namespace OfficeSeatReservation.Services
                 EndDate = endDate
             };
 
-            // Add the reservation to the database context and save changes.
             _context.Reservations.Add(reservation);
 
-            // Update the seat's availability status.
             seat.IsAvailable = false;
 
-            // Save changes to the database.
             _context.SaveChanges();
         }
     }
