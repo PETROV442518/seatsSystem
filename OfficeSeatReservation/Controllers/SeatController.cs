@@ -10,7 +10,7 @@ namespace OfficeSeatReservation.Controllers
 
     [Route("api/seats")]
     [ApiController]
-    public class SeatController : ControllerBase
+    public class SeatController : Controller
     {
         private readonly SeatsServices _seatsServices
             ; // Replace with your data repository class

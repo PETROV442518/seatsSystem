@@ -4,7 +4,7 @@ using OfficeSeatReservation.Services;
 
 public class SeatsModel : PageModel
 {
-    private readonly SeatsServices _seatsServices; // Replace with your data repository class
+    private readonly SeatsServices _seatsServices; 
 
     public List<Seat> Seats { get; set; }
 

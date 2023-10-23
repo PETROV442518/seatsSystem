@@ -15,10 +15,6 @@ namespace OfficeSeatReservation.Controllers
         {
             _seatsServices = seatsServices;   
         }
-        
-
-       
-
 
     }
 }

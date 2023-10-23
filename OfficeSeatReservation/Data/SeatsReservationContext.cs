@@ -18,11 +18,14 @@ namespace OfficeSeatReservation.Data
         {
             
         }
-        public Reservation Reservation { get; set; }
-        public Seat Seat { get; set; }
         public DbSet<Reservation> Reservations { get; set; }  
         
         public DbSet<Seat> Seats { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
 
 
         public override int SaveChanges()

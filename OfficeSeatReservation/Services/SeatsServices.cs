@@ -22,7 +22,7 @@ namespace OfficeSeatReservation.Services
             return _context.Seats.ToList();
         }
 
-        internal Seat GetSeatById(int seatId)
+        internal Seat? GetSeatById(int seatId)
         {
            return _context.Seats.Where(s => s.Id == seatId).FirstOrDefault();
         }
@@ -41,7 +41,7 @@ namespace OfficeSeatReservation.Services
 
         internal void ReserveSeatForPeriod(int seatId, string employeeName, DateTime startDate, DateTime endDate)
         {
-            var seat = GetSeatById(seatId);
+            Seat? seat = GetSeatById(seatId);
             var reservation = new Reservation
             {
                 SeatId = seatId,

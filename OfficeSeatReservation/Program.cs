@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using OfficeSeatReservation.Data;
+using OfficeSeatReservation.Services;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,7 @@ ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddDbContext<SeatsReservationContext>(options =>
     options.UseNpgsql(
         configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<SeatsServices, SeatsServices>();
 
 var app = builder.Build();
 
