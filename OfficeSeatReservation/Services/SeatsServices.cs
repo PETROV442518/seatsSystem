@@ -19,6 +19,7 @@ namespace OfficeSeatReservation.Services
 
         internal List<Seat> GetAllSeats()
         {
+            
             return _context.Seats.ToList();
         }
 

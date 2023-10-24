@@ -27,7 +27,6 @@ namespace OfficeSeatReservation.Data
             base.OnModelCreating(builder);
         }
 
-
         public override int SaveChanges()
         {
             return base.SaveChanges();

@@ -26,10 +26,24 @@ ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddDbContext<SeatsReservationContext>(options =>
     options.UseNpgsql(
         configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddScoped<SeatsServices, SeatsServices>();
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<SeatsReservationContext>();
+    dbContext.Database.EnsureCreated();
 
+    if (!dbContext.Seats.Any())
+    {
+        dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "1" });
+        dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "2" });
+        dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "3" });
+        dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "4" });
+        dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "5" });
+    }
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
