@@ -1,15 +1,13 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using OfficeSeatReservation.Domain;
 using OfficeSeatReservation.Services;
 
-public class SeatsModel : PageModel
+public class AvailableSeatsModel : PageModel
 {
     private readonly SeatsServices _seatsService;
+
     public int AvailableSeatsCount { get; set; }
 
-    public List<Seat> Seats { get; set; }
-
-    public SeatsModel(SeatsServices seatsService)
+    public AvailableSeatsModel(SeatsServices seatsService)
     {
         _seatsService = seatsService;
     }

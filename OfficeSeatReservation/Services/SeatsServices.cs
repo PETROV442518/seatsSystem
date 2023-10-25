@@ -12,11 +12,6 @@ namespace OfficeSeatReservation.Services
             _context = context;
         }
 
-        internal List<Seat> GetAllAvailableSeats()
-        {
-           return _context.Seats.Where(s => s.IsAvailable).ToList();
-        }
-
         internal List<Seat> GetAllSeats()
         {
             
@@ -56,6 +51,10 @@ namespace OfficeSeatReservation.Services
             seat.IsAvailable = false;
 
             _context.SaveChanges();
+        }
+        internal int GetAvailableSeatsCount()
+        {
+            return _context.Seats.Where(s => s.IsAvailable == true).Count();
         }
     }
 }

@@ -16,6 +16,7 @@ using System.Security.Cryptography;
 using System.Text;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,9 +24,12 @@ builder.Services.AddRazorPages();
 
 ConfigurationManager configuration = builder.Configuration;
 
+//builder.Services.AddDbContext<SeatsReservationContext>(options =>
+//  options.UseNpgsql(
+//    configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddDbContext<SeatsReservationContext>(options =>
-    options.UseNpgsql(
-        configuration.GetConnectionString("DefaultConnection")));
+    options.UseInMemoryDatabase(databaseName: "seatsDB"));
 
 builder.Services.AddScoped<SeatsServices, SeatsServices>();
 

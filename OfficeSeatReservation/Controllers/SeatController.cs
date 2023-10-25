@@ -23,8 +23,8 @@ namespace OfficeSeatReservation.Controllers
         public IActionResult Index()
         {
             // Retrieve the list of available seats from your data repository.
-            List<Seat> seats = _seatsServices.GetAllAvailableSeats();
-            return View(seats);
+            int availableSeatsCount = _seatsServices.GetAvailableSeatsCount();
+            return View(availableSeatsCount);
         }
 
         public IActionResult CheckAvailability(int seatId, DateTime startDate, DateTime endDate)
