@@ -8,8 +8,6 @@ namespace OfficeSeatReservation.Data
 {
     public class SeatsReservationContext : DbContext
     {
-        
-
         public SeatsReservationContext(DbContextOptions<SeatsReservationContext> options): base(options)
         {
             

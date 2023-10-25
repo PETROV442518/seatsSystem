@@ -54,6 +54,7 @@ namespace OfficeSeatReservation.Services
         }
         internal int GetAvailableSeatsCount()
         {
+            
             return _context.Seats.Where(s => s.IsAvailable == true).Count();
         }
     }

@@ -1,19 +1,6 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using OfficeSeatReservation.Data;
 using OfficeSeatReservation.Services;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 
 
 
@@ -25,8 +12,8 @@ builder.Services.AddRazorPages();
 ConfigurationManager configuration = builder.Configuration;
 
 //builder.Services.AddDbContext<SeatsReservationContext>(options =>
-//  options.UseNpgsql(
-//    configuration.GetConnectionString("DefaultConnection")));
+  //options.UseNpgsql(
+    //configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddDbContext<SeatsReservationContext>(options =>
     options.UseInMemoryDatabase(databaseName: "seatsDB"));
@@ -47,6 +34,7 @@ using (var scope = app.Services.CreateScope())
         dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "4" });
         dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "5" });
     }
+    dbContext.SaveChanges();
 }
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

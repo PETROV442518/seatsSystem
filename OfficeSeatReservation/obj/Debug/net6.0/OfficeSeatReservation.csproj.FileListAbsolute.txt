@@ -95,3 +95,4 @@ C:\Users\tsvetan.petrov\Documents\repos\seatsSystem\OfficeSeatReservation\obj\De
 C:\Users\tsvetan.petrov\Documents\repos\seatsSystem\OfficeSeatReservation\obj\Debug\net6.0\OfficeSeatReservation.pdb
 C:\Users\tsvetan.petrov\Documents\repos\seatsSystem\OfficeSeatReservation\obj\Debug\net6.0\OfficeSeatReservation.genruntimeconfig.cache
 C:\Users\tsvetan.petrov\Documents\repos\seatsSystem\OfficeSeatReservation\obj\Debug\net6.0\ref\OfficeSeatReservation.dll
+C:\Users\User\source\repos\OfficeSeatReservation\OfficeSeatReservation\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
