@@ -35,7 +35,7 @@ namespace OfficeSeatReservation.Services
             return result;
         }
 
-        internal void ReserveSeatForPeriod(int seatId, string employeeName, DateTime startDate, DateTime endDate)
+        internal async void ReserveSeatForPeriod(int seatId, string employeeName, DateTime startDate, DateTime endDate)
         {
             Seat? seat = GetSeatById(seatId);
             var reservation = new Reservation
@@ -56,6 +56,13 @@ namespace OfficeSeatReservation.Services
         {
             
             return _context.Seats.Where(s => s.IsAvailable == true).Count();
+        }
+
+        internal int GetAvailableSeatsCountForPeriod(DateTime startDate, DateTime endDate)
+        {
+            var allSeatsCount = _context.Seats.Count();
+            int reservationsForPeriodCount = _context.Reservations.Where(r => r.StartDate >= startDate && r.EndDate <= endDate).Count();
+            return allSeatsCount - reservationsForPeriodCount;
         }
     }
 }

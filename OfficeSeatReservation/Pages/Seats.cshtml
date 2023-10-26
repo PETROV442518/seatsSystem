@@ -1,29 +1,30 @@
 ﻿@page
 @model SeatsModel
 @{
-    ViewData["Title"] = "Seat Layout";
+    ViewData["Title"] = "Check Available Seats";
 }
 
 <h1>@ViewData["Title"]</h1>
 
-<?xml version="1.0" encoding="UTF-8"?>
-<div class="seat-layout">
-    <p>Total available seats: @Model.AvailableSeatsCount</p>
-</div>
-<div>
-    <form method="post">
-    <div class="form-group">
-        <label for="EmployeeName">Your Name:</label>
-        <input type="text" class="form-control" id="EmployeeName" name="EmployeeName">
-    </div>
+<form method="post">
     <div class="form-group">
         <label for="StartDate">Start Date:</label>
-        <input type="date" class="form-control" id="StartDate" name="StartDate">
+        <input type="date" class="form-control" id="StartDate" name="StartDate" asp-for="StartDate">
     </div>
     <div class="form-group">
         <label for="EndDate">End Date:</label>
-        <input type="date" class="form-control" id="EndDate" name="EndDate">
+        <input type="date" class="form-control" id="EndDate" name="EndDate" asp-for="EndDate">
     </div>
-    <button type="submit" class="btn btn-primary">Reserve</button>
+    <button type="submit" class="btn btn-primary">Check Availability</button>
 </form>
-</div>
+
+@if (Model.AvailableSeatsCount > 0)
+{
+    <h2>Total Available Seats for the Period: @Model.AvailableSeatsCount</h2>
+    <a asp-page="Reserve" class="btn btn-success">Reserve</a>
+}
+else if (Model.AvailableSeatsCount == 0)
+{
+    <p>No available seats for the specified period.</p>
+}
+

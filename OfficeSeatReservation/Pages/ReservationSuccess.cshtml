@@ -1,0 +1,16 @@
+﻿@page
+@model YourApp.Pages.ReservationSuccessModel // Adjust the namespace and model name
+
+@{
+    ViewData["Title"] = "Reservation Successful";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="alert alert-success">
+    Your reservation has been successfully confirmed. Thank you for choosing our service.
+</div>
+
+<p>
+    <a asp-page="CheckAvailableSeats" class="btn btn-primary">Back to Check Available Seats</a>
+</p>
