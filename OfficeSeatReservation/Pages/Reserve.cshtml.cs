@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using OfficeSeatReservation.Domain;
 using OfficeSeatReservation.Services;
 
 public class ReserveModel : PageModel
 {
-    private readonly SeatsServices _seatsServices;
-
-    public Seat SelectedSeat { get; set; }
+    private readonly SeatsServices  _seatsServices; 
+    public int SeatId { get; set; }
 
     [BindProperty]
     [Required(ErrorMessage = "Please enter your name.")]
@@ -24,35 +24,50 @@ public class ReserveModel : PageModel
     [Display(Name = "End Date")]
     public DateTime EndDate { get; set; }
 
+    public IList<Seat> AvailableSeats { get; set; }
+    public SelectList SeatSelectList { get; set; }
+
     public ReserveModel(SeatsServices seatsServices)
     {
-       _seatsServices = seatsServices;
+        _seatsServices = seatsServices;
     }
 
-    public IActionResult OnGet(int seatId)
+    public void OnGet()
     {
-        // Retrieve the selected seat based on seatId.
-        if (SelectedSeat == null)
-        {
-            return RedirectToPage("CheckAvailableSeats"); // Redirect if the seat doesn't exist.
-        }
 
-        return Page();
+        StartDate = DateTime.Today;
+        EndDate = DateTime.Today.AddDays(1);
+        // Populate the list of available seats for selection.
+        AvailableSeats = _seatsServices.GetAvailableSeatsForPeriod(StartDate, EndDate);
+        SeatSelectList = new SelectList(AvailableSeats, "Id", "SeatNumber");
     }
 
     public IActionResult OnPost()
     {
         if (ModelState.IsValid)
         {
-            int seatID = _seatsServices.GetAllSeats().FirstOrDefault().Id;
-            _seatsServices.ReserveSeatForPeriod(seatID, EmployeeName, StartDate, EndDate);
-                // Reservation successful, you can redirect to a success page.
-               return RedirectToPage("ReservationSuccess");
+            // Check if the selected seat is available for the specified period.
+            bool isSeatAvailable = _seatsServices.IsSeatAvailable(SeatId, StartDate, EndDate);
+
+            if (isSeatAvailable)
+            {
+                // Create the reservation and save it to the database.
+                _seatsServices.ReserveSeatForPeriod(SeatId, EmployeeName, StartDate, EndDate);
+
+                // Redirect to a success page after a successful reservation.
+                return RedirectToPage("ReservationSuccess");
+            }
+            else
+            {
+                // Reservation failed due to seat unavailability. Handle the error.
+                ModelState.AddModelError(string.Empty, "The selected seat is no longer available for the specified period.");
+            }
         }
-        else
-        {
-            ModelState.AddModelError(string.Empty, "Reservation failed. The seat may no longer be available for the specified period.");
-        }
+
+        // Re-populate the list of available seats for the dropdown.
+        AvailableSeats = _seatsServices.GetAvailableSeatsForPeriod(StartDate, EndDate);
+        SeatSelectList = new SelectList(AvailableSeats, "Id", "SeatNumber");
+
         return Page();
     }
 }

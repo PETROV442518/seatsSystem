@@ -27,7 +27,7 @@ namespace OfficeSeatReservation.Controllers
             return View(availableSeatsCount);
         }
 
-        public IActionResult CheckAvailability(int seatId, DateTime startDate, DateTime endDate)
+        public IActionResult CheckAvailability(string seatId, DateTime startDate, DateTime endDate)
         {
             // Check seat availability for a specific period.
             bool isAvailable = _seatsServices.IsSeatAvailableForPeriod(seatId, startDate, endDate);
@@ -46,6 +46,7 @@ namespace OfficeSeatReservation.Controllers
         public IActionResult Reserve(int seatId, string employeeName, DateTime startDate, DateTime endDate)
         {
             // Handle the reservation process.
+            var seat = _seatsServices.GetSeatById(seatId);
             _seatsServices.ReserveSeatForPeriod(seatId, employeeName, startDate, endDate);
             return RedirectToAction("Index"); // Redirect to the seat layout after making a reservation.
         }

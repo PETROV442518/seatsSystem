@@ -14,21 +14,23 @@ namespace OfficeSeatReservation.Services
 
         internal List<Seat> GetAllSeats()
         {
-            
+
             return _context.Seats.ToList();
         }
 
         internal Seat? GetSeatById(int seatId)
         {
-           return _context.Seats.Where(s => s.Id == seatId).FirstOrDefault();
+            return _context.Seats.Where(s => s.Id == seatId).FirstOrDefault();
         }
 
-        internal bool IsSeatAvailableForPeriod(int id, DateTime startDate, DateTime endDate)
+        internal bool IsSeatAvailableForPeriod(string seatNumber, DateTime startDate, DateTime endDate)
         {
-           var result = false;
-           var seat = _context.Reservations.Where(s => s.SeatId == id).FirstOrDefault();
-            if (seat != null) {
-                if(seat.StartDate <= startDate || seat.EndDate >= endDate) { 
+            var result = false;
+            var seat = _context.Reservations.Where(s => s.SeatNumber == seatNumber).FirstOrDefault();
+            if (seat != null)
+            {
+                if (seat.StartDate <= startDate || seat.EndDate >= endDate)
+                {
                     result = true;
                 }
             }
@@ -54,7 +56,7 @@ namespace OfficeSeatReservation.Services
         }
         internal int GetAvailableSeatsCount()
         {
-            
+
             return _context.Seats.Where(s => s.IsAvailable == true).Count();
         }
 
@@ -63,6 +65,18 @@ namespace OfficeSeatReservation.Services
             var allSeatsCount = _context.Seats.Count();
             int reservationsForPeriodCount = _context.Reservations.Where(r => r.StartDate >= startDate && r.EndDate <= endDate).Count();
             return allSeatsCount - reservationsForPeriodCount;
+        }
+
+        internal IList<Seat> GetAvailableSeatsForPeriod(DateTime startDate, DateTime endDate)
+        {
+            IList<Seat> reservationsForPeriodCount = _context.Reservations.Where(r => r.StartDate >= startDate && r.EndDate <= endDate).Select(s => s.Seat).ToList();
+            return reservationsForPeriodCount;
+        }
+
+        internal bool IsSeatAvailable(int seatId, DateTime startDate, DateTime endDate)
+        {
+            var seat = _context.Seats.Where(s => s.Id == seatId).FirstOrDefault();
+            return _context.Reservations.Where(r => r.StartDate >= startDate && r.EndDate <= endDate).Select(s => s.SeatNumber == seat.SeatNumber).FirstOrDefault();
         }
     }
 }

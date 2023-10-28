@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using OfficeSeatReservation.Domain;
 using OfficeSeatReservation.Services;
 
 public class AvailableSeatsModel : PageModel
@@ -6,6 +7,10 @@ public class AvailableSeatsModel : PageModel
     private readonly SeatsServices _seatsService;
 
     public int AvailableSeatsCount { get; set; }
+    public IList<Seat> AvailableSeats { get; set; }
+
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
 
     public AvailableSeatsModel(SeatsServices seatsService)
     {

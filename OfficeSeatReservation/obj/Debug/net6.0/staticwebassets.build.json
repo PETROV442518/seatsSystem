@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WRD6FfXGZ3q2V7nnoIVQh1YFR8eUNQ4eIizT5M5d/q8=",
+  "Hash": "meAEZGDUIOReDp58UE/DU7HJtL1EFj7DCFyPqXUtQ3Q=",
   "Source": "OfficeSeatReservation",
   "BasePath": "_content/OfficeSeatReservation",
   "Mode": "Default",
@@ -1069,6 +1069,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\User\\source\\repos\\OfficeSeatReservation\\OfficeSeatReservation\\wwwroot\\svg\\Office_Layout_Seating_Plan.svg",
+      "SourceId": "OfficeSeatReservation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\source\\repos\\OfficeSeatReservation\\OfficeSeatReservation\\wwwroot\\",
+      "BasePath": "_content/OfficeSeatReservation",
+      "RelativePath": "svg/Office_Layout_Seating_Plan.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\svg\\Office_Layout_Seating_Plan.svg"
     }
   ]
 }
