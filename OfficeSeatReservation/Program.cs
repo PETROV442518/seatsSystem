@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OfficeSeatReservation.Data;
+using OfficeSeatReservation.Domain;
 using OfficeSeatReservation.Services;
 
 
@@ -28,11 +29,10 @@ using (var scope = app.Services.CreateScope())
 
     if (!dbContext.Seats.Any())
     {
-        dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "1" });
-        dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "2" });
-        dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "3" });
-        dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "4" });
-        dbContext.Seats.Add(new OfficeSeatReservation.Domain.Seat { IsAvailable = true, SeatNumber = "5" });
+        for (int i = 1; i <= 30; i++)
+        {
+            dbContext.Seats.Add(new Seat { IsAvailable = true, SeatNumber = $"seat-{i}" });
+        }
     }
     dbContext.SaveChanges();
 }

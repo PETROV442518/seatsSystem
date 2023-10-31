@@ -5,9 +5,6 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-
-<svg></svg>
-
 <form method="post">
     <div class="form-group">
         <label for="StartDate">Start Date:</label>
@@ -29,4 +26,251 @@ else if (Model.AvailableSeatsCount == 0)
 {
     <p>No available seats for the specified period.</p>
 }
+
+<svg id="office-seats" width="800" height="600">
+    <!-- Prod squad and automation team -->
+    <rect id="seat-1" x="100" y="100" width="30" height="30" fill="green" />
+    <select id="seat-1-select" aria-controls="seat-1">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-2" x="150" y="100" width="30" height="30" fill="green" />
+    <select id="seat-2-select" aria-controls="seat-2">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-3" x="250" y="100" width="30" height="30" fill="green" />
+    <select id="seat-3-select" aria-controls="seat-3">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-4" x="100" y="150" width="30" height="30" fill="green" />
+    <select id="seat-4-select" aria-controls="seat-4">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-5" x="150" y="150" width="30" height="30" fill="green" />
+    <select id="seat-5-select" aria-controls="seat-5">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-6" x="250" y="150" width="30" height="30" fill="green" />
+    <select id="seat-6-select" aria-controls="seat-6">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <!-- table 3 -->
+    <rect id="seat-7" x="100" y="250" width="30" height="30" fill="green" />
+    <select id="seat-7-select" aria-controls="seat-7">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-8" x="100" y="300" width="30" height="30" fill="green" />
+    <select id="seat-8-select" aria-controls="seat-8">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-9" x="100" y="350" width="30" height="30" fill="green" />
+    <select id="seat-9-select" aria-controls="seat-9">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-10" x="150" y="250" width="30" height="30" fill="green" />
+    <select id="seat-10-select" aria-controls="seat-10">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-11" x="150" y="300" width="30" height="30" fill="green" />
+    <select id="seat-11-select" aria-controls="seat-11">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-12" x="150" y="350" width="30" height="30" fill="green" />
+    <select id="seat-12-select" aria-controls="seat-12">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <!-- table 4 -->
+    <rect id="seat-13" x="250" y="250" width="30" height="30" fill="green" />
+    <select id="seat-13-select" aria-controls="seat-13">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-14" x="250" y="300" width="30" height="30" fill="green" />
+    <select id="seat-14-select" aria-controls="seat-14">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-15" x="250" y="350" width="30" height="30" fill="green" />
+    <select id="seat-15-select" aria-controls="seat-15">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-16" x="300" y="250" width="30" height="30" fill="green" />
+    <select id="seat-16-select" aria-controls="seat-16">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-17" x="300" y="300" width="30" height="30" fill="green" />
+    <select id="seat-17-select" aria-controls="seat-17">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-18" x="300" y="350" width="30" height="30" fill="green" />
+    <select id="seat-18-select" aria-controls="seat-18">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <!-- table 5 -->
+    <rect id="seat-19" x="400" y="250" width="30" height="30" fill="green" />
+    <select id="seat-19-select" aria-controls="seat-19">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-20" x="400" y="300" width="30" height="30" fill="green" />
+    <select id="seat-20-select" aria-controls="seat-20">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-21" x="400" y="350" width="30" height="30" fill="green" />
+    <select id="seat-21-select" aria-controls="seat-21">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-22" x="450" y="250" width="30" height="30" fill="green" />
+    <select id="seat-22-select" aria-controls="seat-22">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-23" x="450" y="300" width="30" height="30" fill="green" />
+    <select id="seat-23-select" aria-controls="seat-23">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-24" x="450" y="350" width="30" height="30" fill="green" />
+    <select id="seat-24-select" aria-controls="seat-24">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <!-- table 6 -->
+    <rect id="seat-25" x="550" y="250" width="30" height="30" fill="green" />
+    <select id="seat-25-select" aria-controls="seat-25">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-26" x="550" y="300" width="30" height="30" fill="green" />
+    <select id="seat-26-select" aria-controls="seat-26">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-27" x="550" y="350" width="30" height="30" fill="green" />
+    <select id="seat-27-select" aria-controls="seat-27">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-28" x="600" y="250" width="30" height="30" fill="green" />
+    <select id="seat-28-select" aria-controls="seat-28">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-29" x="600" y="300" width="30" height="30" fill="green" />
+    <select id="seat-29-select" aria-controls="seat-29">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-30" x="600" y="350" width="30" height="30" fill="green" />
+    <select id="seat-30-select" aria-controls="seat-30">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <!-- table 7 -->
+    <rect id="seat-31" x="700" y="250" width="30" height="30" fill="green" />
+    <select id="seat-31-select" aria-controls="seat-31">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-32" x="700" y="300" width="30" height="30" fill="green" />
+    <select id="seat-32-select" aria-controls="seat-32">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <rect id="seat-33" x="700" y="350" width="30" height="30" fill="green" />
+    <select id="seat-33-select" aria-controls="seat-33">
+        <option value="available">Available</option>
+        <option value="unavailable">Unavailable</option>
+    </select>
+    <!-- ... (add more seats) -->
+</svg>
+<div>
+    <label for="start-date">Start Date:</label>
+    <input type="date" id="start-date" />
+    <label for="end-date">End Date:</label>
+    <input type="date" id="end-date" />
+    <button id="filter-button">Filter Seats</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const officeSeats = document.getElementById("office-seats");
+        const seats = officeSeats.querySelectorAll("rect");
+        const selectElements = officeSeats.querySelectorAll("select");
+
+        // Function to update seat availability based on select option
+        function updateSeatAvailability(selectElement, seatRect) {
+            const selectedValue = selectElement.value;
+            const seatId = seatRect.id;
+
+            // Update the availability status based on the selected option
+            if (selectedValue === "available") {
+                seatRect.style.fill = "green"; // Set the seat color for "available"
+            } else if (selectedValue === "unavailable") {
+                seatRect.style.fill = "red"; // Set the seat color for "unavailable"
+            }
+
+            // Implement your logic to update seat availability in the data model or database
+        }
+
+        // Add event listeners to handle changes in select elements
+        selectElements.forEach((selectElement) => {
+            const seatId = selectElement.getAttribute("aria-controls");
+            const associatedSeat = officeSeats.querySelector(`#${seatId}`);
+            selectElement.addEventListener("change", () => {
+                updateSeatAvailability(selectElement, associatedSeat);
+            });
+        });
+    });
+</script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const officeSeats = document.getElementById("office-seats");
+        const seats = officeSeats.querySelectorAll("rect");
+
+        // Function to filter available seats
+        function filterAvailableSeats(startDate, endDate) {
+            seats.forEach((seat) => {
+                // Check if the seat is available for the specified period
+                const seatId = seat.id;
+                const isAvailable = checkAvailability(seatId, startDate, endDate);
+                seat.style.display = isAvailable ? "block" : "none";
+            });
+        }
+
+        // Function to check seat availability for the given period
+        function checkAvailability(seatId, startDate, endDate) {
+            // Implement your logic to check availability based on data
+            // You can use AJAX to query server-side data if needed
+            // Return true for available seats, false for reserved seats
+            return true; // Replace with your logic
+        }
+
+        // Example usage: Filter seats on button click
+        document.getElementById("filter-button").addEventListener("click", function () {
+            const startDate = new Date(document.getElementById("start-date").value);
+            const endDate = new Date(document.getElementById("end-date").value);
+            filterAvailableSeats(startDate, endDate);
+        });
+    });
+</script>
 
