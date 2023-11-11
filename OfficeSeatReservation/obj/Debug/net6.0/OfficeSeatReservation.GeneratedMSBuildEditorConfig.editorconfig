@@ -16,20 +16,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\tsvetan.petrov\Documents\repos\seatsSystem\OfficeSeatReservation
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/tsvetan.petrov/Documents/repos/seatsSystem/OfficeSeatReservation/Pages/AvailableSeatsModel.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXZhaWxhYmxlU2VhdHNNb2RlbC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/tsvetan.petrov/Documents/repos/seatsSystem/OfficeSeatReservation/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tsvetan.petrov/Documents/repos/seatsSystem/OfficeSeatReservation/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/tsvetan.petrov/Documents/repos/seatsSystem/OfficeSeatReservation/Pages/OfficeSeats.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT2ZmaWNlU2VhdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tsvetan.petrov/Documents/repos/seatsSystem/OfficeSeatReservation/Pages/Privacy.cshtml]
@@ -40,20 +32,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVzZXJ2YXRpb25TdWNjZXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/tsvetan.petrov/Documents/repos/seatsSystem/OfficeSeatReservation/Pages/Reserve.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVzZXJ2ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/tsvetan.petrov/Documents/repos/seatsSystem/OfficeSeatReservation/Pages/Seats.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VhdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tsvetan.petrov/Documents/repos/seatsSystem/OfficeSeatReservation/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/tsvetan.petrov/Documents/repos/seatsSystem/OfficeSeatReservation/Pages/_SVGOfficeMap.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1NWR09mZmljZU1hcC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/tsvetan.petrov/Documents/repos/seatsSystem/OfficeSeatReservation/Pages/_ViewImports.cshtml]

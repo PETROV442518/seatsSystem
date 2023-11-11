@@ -28,8 +28,6 @@ public class SeatsModel : PageModel
 
     public IActionResult OnPost()
     {
-        // Calculate the count of available seats based on the provided start date and end date.
-        AvailableSeatsCount = _seatsServices.GetAvailableSeatsCountForPeriod(StartDate, EndDate);
         return Page();
     }
 }

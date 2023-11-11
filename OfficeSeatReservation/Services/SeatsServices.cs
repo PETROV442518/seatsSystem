@@ -18,65 +18,16 @@ namespace OfficeSeatReservation.Services
             return _context.Seats.ToList();
         }
 
-        internal Seat? GetSeatById(int seatId)
+        internal Seat? GetSeatById(string seatNumber)
         {
-            return _context.Seats.Where(s => s.Id == seatId).FirstOrDefault();
+            return _context.Seats.Where(s => s.SeatNumber == seatNumber).FirstOrDefault();
         }
 
-        internal bool IsSeatAvailableForPeriod(string seatNumber, DateTime startDate, DateTime endDate)
+        internal IList<string> getUnavailableSeatsForPeriod(DateTime startDate, DateTime endDate)
         {
-            var result = false;
-            var seat = _context.Reservations.Where(s => s.SeatNumber == seatNumber).FirstOrDefault();
-            if (seat != null)
-            {
-                if (seat.StartDate <= startDate || seat.EndDate >= endDate)
-                {
-                    result = true;
-                }
-            }
-            return result;
-        }
-
-        internal async void ReserveSeatForPeriod(int seatId, string employeeName, DateTime startDate, DateTime endDate)
-        {
-            Seat? seat = GetSeatById(seatId);
-            var reservation = new Reservation
-            {
-                SeatId = seatId,
-                EmployeeName = employeeName,
-                StartDate = startDate,
-                EndDate = endDate
-            };
-
-            _context.Reservations.Add(reservation);
-
-            seat.IsAvailable = false;
-
-            _context.SaveChanges();
-        }
-        internal int GetAvailableSeatsCount()
-        {
-
-            return _context.Seats.Where(s => s.IsAvailable == true).Count();
-        }
-
-        internal int GetAvailableSeatsCountForPeriod(DateTime startDate, DateTime endDate)
-        {
-            var allSeatsCount = _context.Seats.Count();
-            int reservationsForPeriodCount = _context.Reservations.Where(r => r.StartDate >= startDate && r.EndDate <= endDate).Count();
-            return allSeatsCount - reservationsForPeriodCount;
-        }
-
-        internal IList<Seat> GetAvailableSeatsForPeriod(DateTime startDate, DateTime endDate)
-        {
-            IList<Seat> reservationsForPeriodCount = _context.Reservations.Where(r => r.StartDate >= startDate && r.EndDate <= endDate).Select(s => s.Seat).ToList();
-            return reservationsForPeriodCount;
-        }
-
-        internal bool IsSeatAvailable(int seatId, DateTime startDate, DateTime endDate)
-        {
-            var seat = _context.Seats.Where(s => s.Id == seatId).FirstOrDefault();
-            return _context.Reservations.Where(r => r.StartDate >= startDate && r.EndDate <= endDate).Select(s => s.SeatNumber == seat.SeatNumber).FirstOrDefault();
+            var unavailableSeatsList = new List<string>() { "seat-1", "seat-2", "seat-3", "seat-4", "seat-5", "seat-6" };
+            //var unavailableSeatsList = _context.Reservations.Where(r => r.StartDate <= startDate && r.EndDate >= endDate).Select(s => s.SeatNumber).ToList() as IList<string>;
+            return unavailableSeatsList;    
         }
     }
 }

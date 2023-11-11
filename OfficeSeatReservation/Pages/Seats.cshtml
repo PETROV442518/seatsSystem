@@ -3,6 +3,39 @@
 @{
     ViewData["Title"] = "Check Available Seats";
 }
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    function updateSeatColor(seatNumber, color) {
+        var seat = document.getElementById(seatNumber);
+        seat.style.fill = color;
+        seat.style.display = "none";
+    }
+
+    $(document).ready(function () {
+        $("#filterButton").click(function (e) {
+            e.preventDefault();
+
+            var startDate = $("#StartDate").val();
+            var endDate = $("#EndDate").val();
+
+            $.ajax({
+                type: "GET",
+                url: `/api/UnavailableSeats?startDate=${startDate}&endDate=${endDate}`,
+                success: function (data) {
+                    var unavailableSeats = data.unavailableSeats;
+
+                    // Iterate through unavailable seats and update their color to red.
+                    unavailableSeats.forEach(function (seatNumber) {
+                        updateSeatColor(seatNumber, "red");
+                    });
+                },
+                error: function () {
+                    alert("Error updating unavailable seats.");
+                }
+            });
+        });
+    });
+</script>
 
 <h1>@ViewData["Title"]</h1>
 <form method="post">
@@ -14,13 +47,13 @@
         <label for="EndDate">End Date:</label>
         <input type="date" class="form-control" id="EndDate" name="EndDate" asp-for="EndDate">
     </div>
-    <button type="submit" class="btn btn-primary">Check Availability</button>
+    <button id="filterButton" class="btn btn-primary">Check Availability</button>
 </form>
 
 @if (Model.AvailableSeatsCount > 0)
 {
     <h2>Total Available Seats for the Period: @Model.AvailableSeatsCount</h2>
-    <a asp-page="Reserve" class="btn btn-success">Reserve</a>
+    <a asp-page="Reserve"  class="btn btn-success">Reserve</a>
 }
 else if (Model.AvailableSeatsCount == 0)
 {
@@ -201,76 +234,4 @@ else if (Model.AvailableSeatsCount == 0)
     </select>
     <!-- ... (add more seats) -->
 </svg>
-<div>
-    <label for="start-date">Start Date:</label>
-    <input type="date" id="start-date" />
-    <label for="end-date">End Date:</label>
-    <input type="date" id="end-date" />
-    <button id="filter-button">Filter Seats</button>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const officeSeats = document.getElementById("office-seats");
-        const seats = officeSeats.querySelectorAll("rect");
-        const selectElements = officeSeats.querySelectorAll("select");
-
-        // Function to update seat availability based on select option
-        function updateSeatAvailability(selectElement, seatRect) {
-            const selectedValue = selectElement.value;
-            const seatId = seatRect.id;
-
-            // Update the availability status based on the selected option
-            if (selectedValue === "available") {
-                seatRect.style.fill = "green"; // Set the seat color for "available"
-            } else if (selectedValue === "unavailable") {
-                seatRect.style.fill = "red"; // Set the seat color for "unavailable"
-            }
-
-            // Implement your logic to update seat availability in the data model or database
-        }
-
-        // Add event listeners to handle changes in select elements
-        selectElements.forEach((selectElement) => {
-            const seatId = selectElement.getAttribute("aria-controls");
-            const associatedSeat = officeSeats.querySelector(`#${seatId}`);
-            selectElement.addEventListener("change", () => {
-                updateSeatAvailability(selectElement, associatedSeat);
-            });
-        });
-    });
-</script>
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const officeSeats = document.getElementById("office-seats");
-        const seats = officeSeats.querySelectorAll("rect");
-
-        // Function to filter available seats
-        function filterAvailableSeats(startDate, endDate) {
-            seats.forEach((seat) => {
-                // Check if the seat is available for the specified period
-                const seatId = seat.id;
-                const isAvailable = checkAvailability(seatId, startDate, endDate);
-                seat.style.display = isAvailable ? "block" : "none";
-            });
-        }
-
-        // Function to check seat availability for the given period
-        function checkAvailability(seatId, startDate, endDate) {
-            // Implement your logic to check availability based on data
-            // You can use AJAX to query server-side data if needed
-            // Return true for available seats, false for reserved seats
-            return true; // Replace with your logic
-        }
-
-        // Example usage: Filter seats on button click
-        document.getElementById("filter-button").addEventListener("click", function () {
-            const startDate = new Date(document.getElementById("start-date").value);
-            const endDate = new Date(document.getElementById("end-date").value);
-            filterAvailableSeats(startDate, endDate);
-        });
-    });
-</script>
 

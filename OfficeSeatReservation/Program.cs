@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 ConfigurationManager configuration = builder.Configuration;
-
+// use for PG DB
 //builder.Services.AddDbContext<SeatsReservationContext>(options =>
   //options.UseNpgsql(
     //configuration.GetConnectionString("DefaultConnection")));
@@ -22,6 +22,11 @@ builder.Services.AddDbContext<SeatsReservationContext>(options =>
 builder.Services.AddScoped<SeatsServices, SeatsServices>();
 
 var app = builder.Build();
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<SeatsReservationContext>();
@@ -32,6 +37,20 @@ using (var scope = app.Services.CreateScope())
         for (int i = 1; i <= 30; i++)
         {
             dbContext.Seats.Add(new Seat { IsAvailable = true, SeatNumber = $"seat-{i}" });
+        }
+    }
+
+    if (!dbContext.Reservations.Any())
+    {
+        for(int i = 1; i <= 5; i++)
+        {
+            dbContext.Reservations.Add(new Reservation
+            {
+                EmployeeName = "Tsvetan",
+                SeatNumber = $"seat-{i}",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+            });
         }
     }
     dbContext.SaveChanges();

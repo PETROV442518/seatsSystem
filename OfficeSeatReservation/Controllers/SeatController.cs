@@ -12,42 +12,48 @@ namespace OfficeSeatReservation.Controllers
     [ApiController]
     public class SeatController : Controller
     {
-        private readonly SeatsServices _seatsServices
-            ; // Replace with your data repository class
+        private readonly SeatsServices _seatsServices;
 
         public SeatController(SeatsServices seatsServices)
         {
             _seatsServices = seatsServices;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        [Route("/api/UnavailableSeats")]
+        public IActionResult GetUnavailableSeats([FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
         {
-            // Retrieve the list of available seats from your data repository.
-            int availableSeatsCount = _seatsServices.GetAvailableSeatsCount();
-            return View(availableSeatsCount);
+            try
+            {
+                IList<string> unavailableSeats = new List<string>();
+                unavailableSeats = _seatsServices.getUnavailableSeatsForPeriod(startDate, endDate);
+                return new JsonResult(new { unavailableSeats });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it appropriately.
+                return StatusCode(500, "Internal Server Error");
+            }
         }
 
-        public IActionResult CheckAvailability(string seatId, DateTime startDate, DateTime endDate)
-        {
-            // Check seat availability for a specific period.
-            bool isAvailable = _seatsServices.IsSeatAvailableForPeriod(seatId, startDate, endDate);
-            return Json(new { available = isAvailable });
+        public IActionResult Index()
+        {   
+            return View();
         }
 
         [HttpGet]
-        public IActionResult Reserve(int seatId)
+        public IActionResult Reserve(string seatNumber)
         {
             // Show a reservation form with the selected seat information.
-            Seat seat = _seatsServices.GetSeatById(seatId);
+            Seat seat = _seatsServices.GetSeatById(seatNumber);
             return View(seat);
         }
 
         [HttpPost]
-        public IActionResult Reserve(int seatId, string employeeName, DateTime startDate, DateTime endDate)
+        public IActionResult Reserve(string seatNumber, string employeeName, DateTime startDate, DateTime endDate)
         {
             // Handle the reservation process.
-            var seat = _seatsServices.GetSeatById(seatId);
-            _seatsServices.ReserveSeatForPeriod(seatId, employeeName, startDate, endDate);
+            var seat = _seatsServices.GetSeatById(seatNumber);
             return RedirectToAction("Index"); // Redirect to the seat layout after making a reservation.
         }
     }
